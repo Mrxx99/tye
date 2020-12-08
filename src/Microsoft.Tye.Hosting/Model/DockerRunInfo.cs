@@ -16,7 +16,10 @@ namespace Microsoft.Tye.Hosting.Model
             Args = args;
         }
 
+        public bool IsProxy { get; set; }
+
         public bool Private { get; set; }
+
         public bool IsAspNet { get; set; }
 
         public string? NetworkAlias { get; set; }
@@ -28,6 +31,7 @@ namespace Microsoft.Tye.Hosting.Model
         public List<DockerExtraHostMapping> ExtraHosts { get; } = new List<DockerExtraHostMapping>();
 
         public string? Args { get; }
+
         public Dictionary<string, string> BuildArgs { get; set; } = new Dictionary<string, string>();
 
         public string Image { get; }
