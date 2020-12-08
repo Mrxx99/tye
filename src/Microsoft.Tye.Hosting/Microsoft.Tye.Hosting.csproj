@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Dashboard\Pages\DashboardExtension.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bedrock.Framework" Version="0.1.38-alpha.gd25d5b37ad" />
     <PackageReference Include="FeatherHttp" Version="0.1.42-alpha.gf06a8747e7" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.0" />
@@ -38,6 +42,18 @@
 
   <ItemGroup>
     <Compile Include="..\shared\DirectoryExtensions.cs" Link="DirectoryExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Dashboard\Pages\DashboardExtension.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Dashboard\Pages\DashboardExtension.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Dashboard\Pages\DashboardExtension.razor" />
   </ItemGroup>
 
 </Project>

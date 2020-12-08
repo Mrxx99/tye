@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Tye.Extensions;
+using Microsoft.Tye.Extensions.Dashboard;
+using Microsoft.Tye.Hosting.Dashboard;
 using Microsoft.Tye.Hosting.Model;
 
 namespace Microsoft.Tye
@@ -213,7 +215,14 @@ namespace Microsoft.Tye
                 services.Add(ingress.Name, new Service(description));
             }
 
-            return new Application(application.Source, services) { Network = application.Network };
+            var dashboardExtensions = new Dictionary<string, Uri>();
+
+            foreach (var dasboardExtensionsConfig in application.Extensions.OfType<DashboardExtensions>().SelectMany(d => d.Extensions))
+            {
+                dashboardExtensions.Add(dasboardExtensionsConfig.Key, dasboardExtensionsConfig.Value);
+            }
+
+            return new Application(application.Source, services, dashboardExtensions) { Network = application.Network };
         }
 
         public static Tye.Hosting.Model.EnvironmentVariable ToHostingEnvironmentVariable(this EnvironmentVariableBuilder builder)

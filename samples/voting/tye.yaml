@@ -16,6 +16,9 @@ services:
   bindings:
     - port: 6379
       connectionString: ${host}:${port}
+- name: redis-cli
+  image: redis
+  args: "redis-cli -h redis MONITOR"
 - name: worker
   project: worker/worker.csproj
 - name: postgres
@@ -23,8 +26,21 @@ services:
   env:
   - name: POSTGRES_PASSWORD
     value: "pass@word1"
+  - name: LISTEN_ADDRESSES
+    value: "*"
   bindings:
   - port: 5432
     connectionString: Server=${host};Port=${port};User Id=postgres;Password=${env:POSTGRES_PASSWORD};
+- name: postgres-browser
+  image: dpage/pgadmin4
+  env:
+  - name: PGADMIN_DEFAULT_EMAIL
+    value: "test@example.com"
+  - name: PGADMIN_DEFAULT_PASSWORD
+    value: "pass@word1"
+  args: "--add-host=docker:127.0.0.1 --add-host=docker2:192.168.1.14"
+  bindings:
+  - protocol: http
+    containerPort: 80
 - name: results
   project: results/results.csproj

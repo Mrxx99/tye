@@ -293,6 +293,11 @@ namespace Microsoft.Tye.Hosting
                     }
                 }
 
+                foreach (var hostMapping in docker.ExtraHosts)
+                {
+
+                }
+
                 var command = $"run -d {workingDirectory} {volumes} {environmentArguments} {portString} --name {replica} --restart=unless-stopped {dockerImage} {docker.Args ?? ""}";
 
                 _logger.LogInformation("Running image {Image} for {Replica}", docker.Image, replica);

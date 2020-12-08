@@ -1,0 +1,23 @@
+name: frontend-backend
+
+extensions:
+- name: dashboard-extensions
+  pages:
+    - name: Health Checks
+      path: /healthchecker
+      service: healthchecker
+      servicepath: /healthchecks-ui
+
+# dashboard:
+#   - name: Health Checks
+#     path: /healthchecker
+#     service: healthchecker
+#     servicepath: /healthchecks-ui
+
+
+services:
+- name: backend
+  project: backend/backend.csproj
+- name: frontend
+  project: frontend/frontend.csproj
+- name: healthchecker

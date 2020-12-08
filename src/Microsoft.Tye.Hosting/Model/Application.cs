@@ -12,11 +12,12 @@ namespace Microsoft.Tye.Hosting.Model
 {
     public class Application
     {
-        public Application(FileInfo source, Dictionary<string, Service> services)
+        public Application(FileInfo source, Dictionary<string, Service> services, Dictionary<string, Uri>? dashboardExtensions = null)
         {
             Source = source.FullName;
             ContextDirectory = source.DirectoryName!;
             Services = services;
+            DashboardExtensions = dashboardExtensions ?? new Dictionary<string, Uri>();
         }
 
         public string Source { get; }
@@ -27,12 +28,14 @@ namespace Microsoft.Tye.Hosting.Model
 
         public Dictionary<object, object> Items { get; } = new Dictionary<object, object>();
 
+        public Dictionary<string, Uri> DashboardExtensions { get; }
+
         public string? Network { get; set; }
 
         public void PopulateEnvironment(Service service, Action<string, string> set, string defaultHost = "localhost")
         {
             var bindings = ComputeBindings(service, defaultHost);
-
+            
             if (service.Description.Configuration != null)
             {
                 // Inject normal configuration

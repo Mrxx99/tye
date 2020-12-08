@@ -25,6 +25,8 @@ namespace Microsoft.Tye.Hosting.Model
 
         public List<DockerVolume> VolumeMappings { get; } = new List<DockerVolume>();
 
+        public List<DockerExtraHostMapping> ExtraHosts { get; } = new List<DockerExtraHostMapping>();
+
         public string? Args { get; }
         public Dictionary<string, string> BuildArgs { get; set; } = new Dictionary<string, string>();
 

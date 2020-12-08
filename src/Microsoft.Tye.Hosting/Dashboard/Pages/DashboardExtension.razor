@@ -1,0 +1,18 @@
+﻿@page "/dashboard-extension/{ExtensionName}"
+@using System.Linq;
+@inject Application application
+
+<h3>DashboardExtension</h3>
+<iframe src="ExtensionUri.AbsolutePath" width="1000" height="800"></iframe>
+
+@code {
+    [Parameter]
+    public string ExtensionName { get; set; }
+
+    public Uri ExtensionUri { get; set; }
+
+    private override void OnInitialized()
+    {
+        ExtensionUri = application.DashboardExtensions.FirstOrDefault(e => e.Key == ExtensionName)?.Value;
+    }
+}

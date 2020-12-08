@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Tye.Extensions.Dapr;
+using Microsoft.Tye.Extensions.Dashboard;
 using Microsoft.Tye.Extensions.Elastic;
 using Microsoft.Tye.Extensions.Seq;
 using Microsoft.Tye.Extensions.Zipkin;
@@ -19,6 +20,7 @@ namespace Microsoft.Tye.Extensions
             { "elastic", new ElasticStackExtension() },
             { "seq", new SeqExtension() },
             { "zipkin", new ZipkinExtension() },
+            { "dashboard-extensions", new DashboardExtensions() }
         };
     }
 }
